@@ -14,7 +14,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
    public  MyOpenHelper(Context context){
        //构造方法(Context context上下文, String name数据库名称, CursorFactory factory传入Null, int version)数据库的版本
 
-        super(context,"stud.db",null,1);
+        super(context,"stud.db",null,2);
     }
 
     @Override
@@ -29,6 +29,7 @@ public class MyOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        //当构造方法中指定的版本号，与手机中已有数据库的版本号更新的时候，调用本方法
+        sqLiteDatabase.execSQL("alter table student add column stuadd text");
     }
 }
